@@ -6,16 +6,16 @@ func main(){
 
 
 	log.Println(v:"running...")
-	//web 服务端
+	//web server
 	go func(){
 		log.Println(v:"web server running...")
-		//静态资源
+		//静态资源,static
 		http.HandleFunc(pattern:"/", func(w http.ResponseWriter, r *http.Requset){http.ServeFile(w, r, name:"index.html")
 			})
 		http.Handle(pattern:"/static/", http.StripPrefix(prefix:"/static", 
 			http.FileServer(http.Dir("static"))))
 
-		//ajax请求
+		//ajax
 		http.HandleFunc(pattern:"/login", login)
 		http.HandleFunc(pattern:"/logout", logout)
 		http.HandleFunc(pattern:"/last", last)
@@ -24,7 +24,7 @@ func main(){
 		http.ListenAndServe(addr:":80", handler:nil)
 	}()
 
-	//处理状态上报
+	//update
 	for{
 		conn, err := Ln.Accept()
 		if err != nil {

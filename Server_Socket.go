@@ -7,7 +7,8 @@ import (
 )  
 
 func main() {  
-    //建立socket，监听端口  
+    //建立socket,监听端口
+    //establish socket server 
     netListen, err := net.Listen("tcp", "9000")  
     CheckError(err)  
     defer netListen.Close()  
@@ -24,6 +25,7 @@ func main() {
 }  
 
 //处理连接  
+//deal with the connection
 func handleConnection(conn net.Conn) {  
     buffer := make([]byte, 2048)  
     for { 
